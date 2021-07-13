@@ -2,7 +2,7 @@
 
 auth: Nguyen Thanh Long
 
-This is program implement linear regression algorithm from scratch to predict height'son. 
+This is program implement linear regression algorithm from scratch to predict son's height. 
 
 """
 
@@ -19,8 +19,8 @@ def fit(X_bias, y):
 # Read data from .txt file
 """
     File includes 1087 rows and 2 columns:
-        The first columns is height's father
-        The second columns is height's son 
+        The first columns is father's height.
+        The second columns is son's height.
 """
 def init(file):
     father, son = [], []
@@ -38,8 +38,8 @@ if __name__ == '__main__':
     filename = 'fatherandson.txt'
     height = init(filename)
     
-    X = np.array([height[0]]).T
-    y = np.array(height[1])
+    X = np.array([height[0]]).T # father's height
+    y = np.array(height[1]) # son's height
     
     # add bias 
     bias = np.ones((1, len(X)))
