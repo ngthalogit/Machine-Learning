@@ -1,6 +1,9 @@
 """
+
 auth: Nguyen Thanh Long
+
 """
+
 import numpy as np
 from sklearn import linear_model
 
@@ -17,7 +20,8 @@ def init(file):
 
 
 if __name__ == '__main__':
-    filename = '/home/ntl0601/Downloads/fatherandson.txt'
+    
+    filename = 'fatherandson.txt'
     height = init(filename)
     
     X = np.array([height[0]]).T
@@ -29,5 +33,6 @@ if __name__ == '__main__':
     regr = linear_model.LinearRegression()
     regr.fit(X_bias, y)
     
-    w = [regr.coef_[0], regr.intercept_]
-    print(w)
+    W = [regr.coef_[0], regr.intercept_]
+    
+    print(W)
