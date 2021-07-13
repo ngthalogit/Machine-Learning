@@ -21,6 +21,7 @@ if __name__ == '__main__':
 
     regr = linear_model.LinearRegression()
     regr.fit(X_bias, y)
+    
     W = [regr.coef_[:-1], regr.intercept_]
     
     print(W)
