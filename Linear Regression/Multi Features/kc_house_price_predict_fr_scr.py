@@ -1,6 +1,6 @@
 """
 auth: Nguyen Thanh Long
-This program implement linear regression algorithm to pridect house's price.
+This program implement linear regression algorithm from scratch to pridect house's price.
 """
 # import Library
 import numpy as np
