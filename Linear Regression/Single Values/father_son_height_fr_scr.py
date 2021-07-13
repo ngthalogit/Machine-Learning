@@ -2,7 +2,6 @@
 auth: Nguyen Thanh Long
 """
 import numpy as np
-from sklearn import linear_model
 
 
 def fit(X_bias, y):
