@@ -50,7 +50,7 @@ if __name__ == '__main__':
     X_train, X_test, y_train, y_test = train_test_split(X_bias, y, test_size=0.2, random_state=10)  # split X, y into
     # train and test set
 
-    W = fit(X_bias, y).T
+    W = fit(X_train, y_train).T
 
     y_pre = predict(X_test, W)
 
