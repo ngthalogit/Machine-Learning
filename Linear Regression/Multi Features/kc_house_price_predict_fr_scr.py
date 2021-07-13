@@ -36,7 +36,7 @@ def rmse(actual, predicted):
 
 
 if __name__ == '__main__':
-    filename = '/home/ntl0601/Downloads/Commit for git/kc_house_data.csv'
+    filename = 'kc_house_data.csv'
     data = pd.read_csv(filename)[0:500]  # load data from .csv file, we just take the first 499 samples to calculate
 
     y = np.array(data['price'].values)  # house's price
