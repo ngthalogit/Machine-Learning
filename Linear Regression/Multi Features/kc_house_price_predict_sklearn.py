@@ -9,7 +9,7 @@ from sklearn import linear_model
 
 if __name__ == '__main__':
 
-    filename = '/home/ntl0601/Downloads/Commit for git/kc_house_data.csv'
+    filename = 'kc_house_data.csv'
     data = pd.read_csv(filename)[0:500]
 
     y = np.array(data['price'].values)
