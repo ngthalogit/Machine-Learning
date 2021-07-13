@@ -55,7 +55,7 @@ def rmse(actual, predicted):
 
 
 if __name__ == '__main__':
-    filename = '/home/ntl0601/Downloads/fatherandson.txt'
+    filename = 'fatherandson.txt'
     height = init(filename)
 
     X = np.array([height[0]]).T  # father's height
