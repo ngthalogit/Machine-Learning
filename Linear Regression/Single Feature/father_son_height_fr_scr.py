@@ -1,6 +1,9 @@
 """
+
 auth: Nguyen Thanh Long
+
 """
+
 import numpy as np
 
 
@@ -23,6 +26,7 @@ def init(file):
 
 
 if __name__ == '__main__':
+    
     filename = 'fatherandson.txt'
     height = init(filename)
     
@@ -31,5 +35,7 @@ if __name__ == '__main__':
     
     bias = np.ones((1, len(X)))
     X_bias = np.concatenate((X, bias.T), axis=1)
-    w = fit(X_bias, y)
-    print(w)
+    
+    W = fit(X_bias, y)
+    
+    print(W)
