@@ -1,6 +1,6 @@
 """
 auth: Nguyen Thanh Long
-This program use linear regression model in sklearn to predict son's height.
+This program uses linear regression model in sklearn to predict son's height.
 """
 
 # import Library
