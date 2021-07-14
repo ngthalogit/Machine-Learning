@@ -1,6 +1,6 @@
 """
 auth: Nguyen Thanh Long
-This is program implement linear regression algorithm from scratch to predict son's height.
+This is program implementing linear regression algorithm from scratch to predict son's height.
 """
 
 # import Library
