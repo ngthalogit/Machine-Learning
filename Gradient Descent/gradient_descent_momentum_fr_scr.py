@@ -13,7 +13,7 @@ def derivative(x):
     return 2 * x + 10 * np.cos(x)
 
 
-# calculate cost of function f(x) = x ** 2 + 5 * sin(x)
+# calculate cost of function f(x) = x ** 2 + 10 * sin(x)
 def function_cost(x):
     return x ** 2 + 10 * np.sin(x)
 
@@ -36,10 +36,10 @@ def grad_descent_mmt(x, learning_rate, eps, gm):
 if __name__ == "__main__":
     lr = 0.1  # learning rate
     epsilon = 1e-3  # epsilon
-    gama = 0.9
+    gamma = 0.9 # gamma
     x_0 = -5  # initial value
 
-    root, iterate = grad_descent_mmt(x_0, lr, epsilon, gama)
+    root, iterate = grad_descent_mmt(x_0, lr, epsilon, gamma)
 
     minVal = function_cost(root)  # the smallest value
 
