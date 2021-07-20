@@ -42,6 +42,8 @@ if __name__ == "__main__":
     root, iterate = grad_descent_mmt(x_0, lr, epsilon, gamma)
 
     minVal = function_cost(root)  # the smallest value
+    
+ 
 
     
 
