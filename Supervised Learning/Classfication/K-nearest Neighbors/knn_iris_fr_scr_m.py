@@ -12,7 +12,7 @@ from sklearn import datasets
 import numpy as np
 
 
-# constances
+# constants
 SEED = 1
 TEST_SIZE = 130
 TRAIN_SIZE = 20

@@ -11,7 +11,7 @@ from distance_compute import dist_ss
 from sklearn.model_selection import train_test_split
 from sklearn import datasets
 
-# constances
+# constants
 SEED = 5
 TEST_SIZE = 130
 TRAIN_SIZE = 20
