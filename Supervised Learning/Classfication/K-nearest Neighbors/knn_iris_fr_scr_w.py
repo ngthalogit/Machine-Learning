@@ -25,7 +25,7 @@ def dist_ss(Z, X): # distance between set to set
     X2 = np.sum(X * X, 1)
     return  Z2.reshape(-1, 1) + X2.reshape(1, -1) - 2 * np.dot(Z, X.T)
 
-# constances
+# constants
 SEED = 5
 TEST_SIZE = 130
 TRAIN_SIZE = 20
