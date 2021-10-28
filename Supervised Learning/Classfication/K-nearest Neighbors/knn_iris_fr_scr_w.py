@@ -7,23 +7,9 @@ This program implements the knn algorithm from scratch on iris datasets
 
 # libraries
 import numpy as np
+from distance_compute import dist_ss
 from sklearn.model_selection import train_test_split
 from sklearn import datasets
-import numpy as np
-
-# functions for distance computations
-def dist_pp(z, x): # distance between point and point
-    return np.sum((z - x) * (z - x))
-
-def dist_ps_faster(z, X): # distance between point to set of points following the formula
-   z2 = np.sum(z * z)
-   X2 = np.sum(X * X, 1)
-   return z2 + X2 - 2 * np.dot(X, z)
-
-def dist_ss(Z, X): # distance between set to set
-    Z2 = np.sum(Z * Z, 1)
-    X2 = np.sum(X * X, 1)
-    return  Z2.reshape(-1, 1) + X2.reshape(1, -1) - 2 * np.dot(Z, X.T)
 
 # constances
 SEED = 5
