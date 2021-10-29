@@ -1,6 +1,7 @@
 """
 
 auth: Nguyen Thanh Long
+This program implements gradient descent from scratch
 
 """
 
