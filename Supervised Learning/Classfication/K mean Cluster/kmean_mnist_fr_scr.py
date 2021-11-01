@@ -54,5 +54,7 @@ def fit(X, k):
 res = fit(X_train, K)
 
 
-#TODO - Test X_test and visualize the results
+# TODO - Test X_test and visualize the results
+#optimize the problem with centroids initialization algorithm
+
 
