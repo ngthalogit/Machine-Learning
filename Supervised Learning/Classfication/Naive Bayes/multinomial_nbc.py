@@ -2,21 +2,22 @@
 import numpy as np
 
 # Preprocessing data
-D = [['hanoi pho chaolong hanoi'],
-     ['hanoi buncha pho omai'],
-     ['pho banhgio omai'],
-     ['saigon hutiu banhbo pho']]
-d = len(D)
+DATA = [['hanoi pho chaolong hanoi'],
+        ['hanoi buncha pho omai'],
+        ['pho banhgio omai'],
+        ['saigon hutiu banhbo pho']]
+d = len(DATA)
 # labels
-L = ['B', 'B', 'B', 'N']
+LABELS = ['B', 'B', 'B', 'N']
+l = len(LABELS)
 # test case
-T = [['hanoi hanoi buncha hutiu'],
-     ['pho hutiu banhbo']]
-
+TEST_CASE = [['hanoi hanoi buncha hutiu'],
+             ['pho hutiu banhbo']]
+t = len(TEST_CASE)
 paragraph = ""
-for i in range(len(D)):
-    paragraph += D[i][0]
-    if i < len(D) - 1:
+for i in range(len(DATA)):
+    paragraph += DATA[i][0]
+    if i < len(DATA) - 1:
         paragraph += " "
 DICT = [i for i in set(paragraph.split(" "))]
 N = len(DICT)
@@ -56,21 +57,25 @@ def fit(X_train, y_train, X_test, n):
     return rs
 
 
+def get_prob(rs, test_case):
+    labels = np.array([rs[0][i][1] for i in range(len(rs[0]))])
+    probab = np.array([])
+    for r in rs:
+        values = np.array([r[i][0] for i in range(len(r))])
+        values = np.round(values * 100 / np.sum(values), 2)
+        probab = np.append(probab, values)
+    return probab.reshape(-1, len(test_case)), labels
+
+
 # init dataset
-X_train = data_process(D, DICT, N, d)
-y_train = np.array(L)
-X_test = data_process(T, DICT, N, len(T))
+X_train = data_process(DATA, DICT, N, d)
+y_train = np.array(LABELS)
+X_test = data_process(TEST_CASE, DICT, N, t)
 y_test = np.array(["B"])
 
 rs = fit(X_train, y_train, X_test, N)
 
-probab = np.array([])
-for r in rs:
-    values = np.array([r[i][0] for i in range(len(r))])
-    values = np.round(values * 100 / np.sum(values), 2)
-    probab = np.append(probab, values)
-labels = np.array([r[i][1] for i in range(len(rs[0]))])
-probab = probab.reshape(-1, len(T))
+probab, labels = get_prob(rs, TEST_CASE)
 
 print(probab, end="\n")
 print(labels)
