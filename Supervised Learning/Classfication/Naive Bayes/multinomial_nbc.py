@@ -45,7 +45,7 @@ def pMultinomial(c, n, labels, X_train, alpha=1):
     total = (total + alpha) / (np.sum(total, axis=0) + alpha * n)
     return total
 
-def fit(X_train, y_train, X_test, n):
+def pred(X_train, y_train, X_test, n):
     rs = []
     for t in X_test:
         tmp_rs = []
@@ -73,8 +73,6 @@ y_train = np.array(LABELS)
 X_test = data_process(TEST_CASE, DICT, N, t)
 y_test = np.array(["B"])
 
-rs = fit(X_train, y_train, X_test, N)
-
+rs = pred(X_train, y_train, X_test, N)
 probab, labels = get_prob(rs)
-
 
