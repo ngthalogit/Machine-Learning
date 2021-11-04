@@ -6,20 +6,24 @@ DATA = [['hanoi pho chaolong hanoi'],
         ['hanoi buncha pho omai'],
         ['pho banhgio omai'],
         ['saigon hutiu banhbo pho']]
-d = len(DATA)
+
 # labels
 LABELS = ['B', 'B', 'B', 'N']
-l = len(LABELS)
+
 # test case
 TEST_CASE = [['hanoi hanoi buncha hutiu'],
              ['pho hutiu banhbo']]
-t = len(TEST_CASE)
+
 paragraph = ""
 for i in range(len(DATA)):
     paragraph += DATA[i][0]
     if i < len(DATA) - 1:
         paragraph += " "
 DICT = [i for i in set(paragraph.split(" "))]
+
+d = len(DATA)
+l = len(LABELS)
+t = len(TEST_CASE)
 N = len(DICT)
 
 
@@ -33,16 +37,13 @@ def data_process(DATA, DICT, N, d):
         data_arr = np.append(data_arr, data_row)
     return data_arr.reshape(-1, N)
 
-
 def p(c, labels):
     return np.count_nonzero(labels == c) / len(labels)
-
 
 def pMultinomial(c, n, labels, X_train, alpha=1):
     total = np.sum(X_train[labels == c, :], axis=0)
     total = (total + alpha) / (np.sum(total, axis=0) + alpha * n)
     return total
-
 
 def fit(X_train, y_train, X_test, n):
     rs = []
@@ -55,7 +56,6 @@ def fit(X_train, y_train, X_test, n):
         # rs.append(max(tmp_rs, key=lambda x: x[0]))
         rs.append(tmp_rs)
     return rs
-
 
 def get_prob(rs):
     labels = np.array([rs[0][i][1] for i in range(len(rs[0]))])
@@ -77,5 +77,4 @@ rs = fit(X_train, y_train, X_test, N)
 
 probab, labels = get_prob(rs)
 
-print(probab, end="\n")
-print(labels)
+
