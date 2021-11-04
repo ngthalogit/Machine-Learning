@@ -57,14 +57,14 @@ def fit(X_train, y_train, X_test, n):
     return rs
 
 
-def get_prob(rs, test_case):
+def get_prob(rs):
     labels = np.array([rs[0][i][1] for i in range(len(rs[0]))])
     probab = np.array([])
     for r in rs:
         values = np.array([r[i][0] for i in range(len(r))])
         values = np.round(values * 100 / np.sum(values), 2)
         probab = np.append(probab, values)
-    return probab.reshape(-1, len(test_case)), labels
+    return probab.reshape(-1, len(labels)), labels
 
 
 # init dataset
@@ -75,7 +75,7 @@ y_test = np.array(["B"])
 
 rs = fit(X_train, y_train, X_test, N)
 
-probab, labels = get_prob(rs, TEST_CASE)
+probab, labels = get_prob(rs)
 
 print(probab, end="\n")
 print(labels)
