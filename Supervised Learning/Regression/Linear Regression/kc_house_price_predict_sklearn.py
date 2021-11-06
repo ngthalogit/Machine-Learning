@@ -1,9 +1,9 @@
 """
 
 auth: Nguyen Thanh Long
+This program uses linear regression model in sklearn to predict house's price
 
 """
-
 
 import numpy as np
 import pandas as pd
@@ -15,9 +15,9 @@ if __name__ == '__main__':
     filename = 'kc_house_data.csv'
     data = pd.read_csv(filename)[0:500]
 
-    y = np.array(data['price'].values)
     data = data.drop(['date', 'price', 'id'], axis=1)
     X = np.array(data.values)
+    y = np.array(data['price'].values)
 
     bias = np.ones((1, len(X)))
     X_bias = np.concatenate((X, bias.T), axis=1)

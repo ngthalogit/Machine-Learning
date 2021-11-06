@@ -1,15 +1,14 @@
 """
+
 auth: Nguyen Thanh Long
 This program implements linear regression algorithm from scratch to pridect house's price.
 
 """
 
-
 # import Library
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-
 
 # calculate
 def fit(X, y):
@@ -18,25 +17,20 @@ def fit(X, y):
     w = np.dot(XXX.T, y)
     return w
 
-
 # predict test set
 def predict(test, w):
     return np.dot(test, w.T)
 
-
 """ evaluate model """
-
 
 # Mean Square Error
 def mse(actual, predicted):
     n = len(actual)
     return float(np.linalg.norm(actual - predicted) ** 2) * (1 / n)
 
-
 # Root Mean Square Error
 def rmse(actual, predicted):
     return np.sqrt(mse(actual, predicted))
-
 
 if __name__ == '__main__':
     filename = 'kc_house_data.csv'
