@@ -58,6 +58,6 @@ def fit(X, k):
 
 res = fit(X_train, K)
 
-y_pred = labling_centroids(res, X_test)
+y_pred = labling_centroids(res, X_train)
 
 # TODO - optimize the problem with centroids initialization algorithm
