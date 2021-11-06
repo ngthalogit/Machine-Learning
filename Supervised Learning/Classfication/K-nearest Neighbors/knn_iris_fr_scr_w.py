@@ -63,4 +63,4 @@ for i in range(TEST_SIZE):
     if y_pred[i] == y_test[i]:
         accuracy += (1 / TEST_SIZE) * 100
 
-print(accuracy)
+
