@@ -1,3 +1,10 @@
+"""
+
+auth: Nguyen Thanh Long
+This program implements Naive Bayes Classifier with Multnominal Bayes from scratch
+
+"""
+
 # lib
 import numpy as np
 
@@ -14,6 +21,7 @@ LABELS = ['B', 'B', 'B', 'N']
 TEST_CASE = [['hanoi hanoi buncha hutiu'],
              ['pho hutiu banhbo']]
 
+# get dictionary of dataset
 paragraph = ""
 for i in range(len(DATA)):
     paragraph += DATA[i][0]
@@ -21,13 +29,14 @@ for i in range(len(DATA)):
         paragraph += " "
 DICT = [i for i in set(paragraph.split(" "))]
 
+# length of list
 d = len(DATA)
 l = len(LABELS)
 t = len(TEST_CASE)
 N = len(DICT)
 
 
-# function
+# formating input data
 def data_process(DATA, DICT, N, d):
     data_arr = np.array([])
     for i in range(d):
@@ -37,14 +46,17 @@ def data_process(DATA, DICT, N, d):
         data_arr = np.append(data_arr, data_row)
     return data_arr.reshape(-1, N)
 
+# probability class c in input data
 def p(c, labels):
     return np.count_nonzero(labels == c) / len(labels)
+
 
 def pMultinomial(c, n, labels, X_train, alpha=1):
     total = np.sum(X_train[labels == c, :], axis=0)
     total = (total + alpha) / (np.sum(total, axis=0) + alpha * n)
     return total
 
+# predict
 def pred(X_train, y_train, X_test, n):
     rs = []
     for t in X_test:
@@ -56,6 +68,7 @@ def pred(X_train, y_train, X_test, n):
         # rs.append(max(tmp_rs, key=lambda x: x[0]))
         rs.append(tmp_rs)
     return rs
+
 
 def get_prob(rs):
     labels = np.array([rs[0][i][1] for i in range(len(rs[0]))])
@@ -74,5 +87,5 @@ X_test = data_process(TEST_CASE, DICT, N, t)
 y_test = np.array(["B"])
 
 rs = pred(X_train, y_train, X_test, N)
-probab, labels = get_prob(rs)
 
+probab, labels = get_prob(rs)
