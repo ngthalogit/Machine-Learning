@@ -39,5 +39,3 @@ if __name__ == '__main__':
     mse = mean_squared_error(y_test, y_pre)  # Mean Square Error
 
     rmse = np.sqrt(mse)  # Root Mean Square Error
-
-
