@@ -1,6 +1,6 @@
 """
-auth: Nguyen Thanh Long
 
+auth: Nguyen Thanh Long
 This program implements the knn algorithm from scratch on iris datasets 
 
 """
@@ -35,7 +35,7 @@ for i in range(TEST_SIZE):
     row = []
     for j in range(TRAIN_SIZE):
         if dis[i][j] != 0:
-            weight = 1/dis[i][j]
+            weight = 1 / dis[i][j]
         else:
             weight = -1
         col = [dis[i][j], y_train[j], weight]
@@ -61,12 +61,6 @@ for i in range(TEST_SIZE):
 accuracy = 0
 for i in range(TEST_SIZE):
     if y_pred[i] == y_test[i]:
-        accuracy += (1/TEST_SIZE) * 100
-
+        accuracy += (1 / TEST_SIZE) * 100
 
 print(accuracy)
-
-
-
-
-
