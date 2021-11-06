@@ -1,6 +1,8 @@
 """
+
 auth: Nguyen Thanh Long
 This program uses linear regression model in sklearn to predict son's height.
+
 """
 
 # import Library
@@ -16,7 +18,6 @@ from sklearn.metrics import mean_squared_error
         The second columns is son's height.
 """
 
-
 def init(file):
     father, son = [], []
     data = open(file, 'r').readlines()
@@ -26,7 +27,6 @@ def init(file):
             father.append(float(d[0]))
             son.append(float(d[1]))
     return [father, son]
-
 
 if __name__ == '__main__':
     filename = 'fatherandson.txt'
