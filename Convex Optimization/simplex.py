@@ -18,11 +18,11 @@ Constrains: x  + y  <= 10
 
 # init data
 obj_func = np.array([5, 3], dtype=float)  # objective function
-left = np.array([[1, 1, 0, 0],
-                 [2, 1, 1, 0],
-                 [1, 4, 0, 1]], dtype=float)
-right = np.array([10, 16, 32], dtype=float)
-I = np.eye(left.shape[0], dtype=float)
+constrains = np.array([[1, 1],
+                 [2, 1],
+                 [1, 4]], dtype=float)
+h = np.array([10, 16, 32], dtype=float)
+I = np.eye(constrains.shape[0], dtype=float)
 
 
 # func
@@ -40,10 +40,15 @@ def is_in_array(col, narray):
             if is_same_col(col, val): return True
     return False
 
+def to_canonical(constrains):
+    I = np.eye(constrains.shape[0])
+    for idx in range(I.shape[1]):
+        val = I[:, idx]
+        if not is_in_array(val, constrains):
+            constrains = np.concatenate((constrains, np.array([val]).T), axis=1)
+    return constrains
+G = to_canonical(constrains)
 
-for idx in range(I.shape[1]):
-    val = I[:, idx]
-    if not is_in_array(val, left):
-        left = np.concatenate((left, np.array([val]).T), axis=1)
+print(G)
 
 
