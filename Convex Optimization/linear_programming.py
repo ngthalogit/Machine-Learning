@@ -94,4 +94,3 @@ if __name__ == '__main__':
 
     minVal = rs[-1]
 
-    # TODO : BIG M method
