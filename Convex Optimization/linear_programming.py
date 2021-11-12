@@ -9,11 +9,11 @@ import numpy as np
 
 """
 
-Objective function: (x, y) = argmax( 7x + 4y ) 
-Constrains: 2x  + y  <= 20 
-            x +  y  <= 18 
-            x        <= 8 
-            x,y     >= 0
+Objective function: (x, y) = argmax( 5x + 3y ) 
+Constrains: x  +  y  <= 10 
+            2x +  y  <= 16 
+            x  +  4y <= 32 
+            x,y      >= 0
 """
 
 
@@ -94,5 +94,4 @@ if __name__ == '__main__':
 
     minVal = rs[-1]
 
-
-
+    # TODO : BIG M method
