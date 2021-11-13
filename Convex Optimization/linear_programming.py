@@ -17,7 +17,6 @@ Constrains: x  +  y  <= 10
 """
 
 
-
 # func
 def is_same_col(lcol, rcol):
     for b in np.array(lcol) == np.array(rcol):
@@ -106,7 +105,6 @@ def optimize(table):
     return rs
 
 
-<<<<<<< HEAD:Convex Optimization/linear_programming.py
 def solve(obj_func, constrains, h, A=None, b=None):
     f, G, h = constrains_modified(obj_func, constrains, h, A, b)
     m = len(f) - len(obj_func)
@@ -117,6 +115,5 @@ def solve(obj_func, constrains, h, A=None, b=None):
         table = init_table(obj_func, G, h, n)
     rs = optimize(table)
     return rs[0, 2:]
-
 
 
