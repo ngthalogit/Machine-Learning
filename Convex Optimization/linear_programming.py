@@ -7,16 +7,6 @@ This program optimizes linear programming by simplex method
 
 import numpy as np
 
-"""
-
-Objective function: (x, y) = argmax( 7x + 4y ) 
-Constrains: 2x  + y  <= 20 
-            x +  y  <= 18 
-            x        <= 8 
-            x,y     >= 0
-"""
-
-
 # func
 def is_same_col(lcol, rcol):
     for b in np.array(lcol) == np.array(rcol):
@@ -42,12 +32,39 @@ def to_canonical(constrains):
     return constrains
 
 
-def init_table(f, G, h, n):
+def to_bigM_form(A, G, obj_func):
+    G_can = np.copy(G)
+    n = G.shape[1] - A.shape[1]
+    if n > 0:
+        A = np.concatenate((A, np.zeros((A.shape[0], n))), axis=1)
+        G = np.concatenate((G, A), axis=0)
+    G = to_canonical(G)
+    m = G.shape[1] - G_can.shape[1]
+    M = 10000000
+    obj_func = np.concatenate((obj_func.reshape(1, -1), M * np.ones((1, m))), axis=1)
+    return G, obj_func[0]
+
+
+def constrains_modified(obj_func, constrains, h, A=None, b=None):
+    if type(A) != type(None):
+        G_can = to_canonical(constrains)
+        G, obj_func = to_bigM_form(A, G_can, obj_func)
+        h = np.concatenate((h.reshape(1, -1), b.reshape(1, -1)), axis=1)
+        h = h[0]
+    else:
+        G = to_canonical(constrains)
+    return obj_func, G, h
+
+
+def init_table(f, G, h, n, m=0, bigM=False):
     heigh = 1 + n
     wide = 2 + heigh + len(f)
     table = np.zeros((heigh, wide))
     table[1:, 0] = [i for i in range(2 + len(f), 2 + len(f) + n)]
     table[0, 2: 2 + len(f)] = -f
+    if m > 0:
+        M = 10000000
+        table[0, wide - 1 - m:-1] = M * np.ones((1, m))
     table[1:, 2: 2 + G.shape[1]] = G
     table[1:, -1] = h
     return table
@@ -57,11 +74,11 @@ def get_pivot_index(table):
     tmp = np.copy(table)
     idx = np.argmin(tmp[0, :])
     for i in range(1, tmp.shape[0]):
-        tmp[i, idx] = tmp[i, -1] / tmp[i, idx] if tmp[i, idx] > 0 else 10000000
+        tmp[i, idx] = tmp[i, -1] / tmp[i, idx] if tmp[i, idx] > 0 else 10000000000
     return np.argmin(tmp[1:, idx]) + 1, idx
 
 
-def solve(table):
+def optimize(table):
     while True:
         r, c = get_pivot_index(table)
         pivot = table[r, c]
@@ -71,28 +88,22 @@ def solve(table):
             table[i, 2:] -= table[i, c] * table[r, 2:] if i != r else 0
         if np.all(table[0, 2:-1] >= 0):
             break
+    rs = np.zeros((1, table.shape[1]))
     for i in range(1, table.shape[0]):
-        table[0, int(table[i, 0])] = table[i, -1]
-    return table[0, 2:]
+        rs[0, int(table[i, 0])] = table[i, -1]
+    rs[0, -1] = table[0, -1]
+    return rs
 
 
-if __name__ == '__main__':
-    # init data
-    obj_func = np.array([5, 3], dtype=float)
-    constrains = np.array([[1, 1],
-                           [2, 1],
-                           [1, 4]], dtype=float)
-    h = np.array([10, 16, 32], dtype=float)
-    I = np.eye(constrains.shape[0], dtype=float)
-    G = to_canonical(constrains)
+def solve(obj_func, constrains, h, A=None, b=None):
+    f, G, h = constrains_modified(obj_func, constrains, h, A, b)
+    m = len(f) - len(obj_func)
     n = G.shape[1] - constrains.shape[1]
-    table = init_table(obj_func, G, h, n)
-
-    rs = solve(table)
-
-    root = rs[:-1 - n]
-
-    minVal = rs[-1]
-
+    if n > 0:
+        table = init_table(obj_func, G, h, n, m, bigM=True)
+    else:
+        table = init_table(obj_func, G, h, n)
+    rs = optimize(table)
+    return rs[0, 2:]
 
 
