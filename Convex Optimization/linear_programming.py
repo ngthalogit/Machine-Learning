@@ -7,8 +7,6 @@ This program optimizes linear programming by simplex method
 
 import numpy as np
 
-<<<<<<< HEAD:Convex Optimization/linear_programming.py
-=======
 """
 
 Objective function: (x, y) = argmax( 5x + 3y ) 
@@ -19,7 +17,7 @@ Constrains: x  +  y  <= 10
 """
 
 
->>>>>>> 1b5ddda81496d6acd63860f5e9a51fa3a59d36f4:Convex Optimization/Linear Programming.py
+
 # func
 def is_same_col(lcol, rcol):
     for b in np.array(lcol) == np.array(rcol):
@@ -121,5 +119,4 @@ def solve(obj_func, constrains, h, A=None, b=None):
     return rs[0, 2:]
 
 
-=======
->>>>>>> 1b5ddda81496d6acd63860f5e9a51fa3a59d36f4:Convex Optimization/Linear Programming.py
+
