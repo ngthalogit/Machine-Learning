@@ -1,7 +1,7 @@
 """
 
 auth: Nguyen Thanh Long
-This program optimizes linear programming by simplex method
+This program optimizes linear programming by simplex method and big M method
 
 """
 
