@@ -23,4 +23,4 @@ if __name__ == '__main__':
 
     root = rs[:len(f)]
 
-    minVal = rs[-1]
+    minVal = -rs[-1]
